@@ -48,7 +48,7 @@ def id3_to_track (filepath):
 def main ():
 	sFktname = "main"
 	
-	filename = "DJ_Friction_-_Shogun_Audio_Podcast_13_(30.11.2010).mp3"
+	filename = "Noisia_Crank_Original_Mix.wav"
 	
 	track_new = id3_to_track(filename)
 
