@@ -15,9 +15,9 @@
 class track:
 	def __init__(self):
 		# init all variables
-		self.artist = "Unknown"
-		self.title = "Unknown"
-		self.key = "Unknown"
+		self.artist = ""
+		self.title = ""
+		self.key = ""
 		self.link = "" 
 		self.tn = "" 
 	def __str__(self):
@@ -61,8 +61,8 @@ class release:
 	# constructor
 	def __init__(self):
 		# init all variables
-		self.catid = "Unknown"
-		self.shortinfo = "Unknown"
+		self.catid = ""
+		self.shortinfo = ""
 		self.infopage = ""
 		self.tunes = []
 
