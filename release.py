@@ -48,6 +48,12 @@ class track:
 			self.link = value
 		elif key == "tn":
 			self.tn = value
+
+	def is_empty(self):
+		if self.key == "" and self.artist == "" and self.title == "" and self.tn == "":
+			return True
+		else:
+			return False
 # end of release }}} #
 
 
