@@ -18,7 +18,14 @@ import re
 def split_ld (str_orig):
 	sFktname = "split_ld"
 
-	p = re.compile(r"(^.*)\.(.*)+?^")
+	p = re.compile(r"(.*)\.(.*$)")
+	
+	res = p.search(str_orig).groups()
+
+	if len(res) != 2:
+		return None
+	else:
+		return res[1]
 # end of split_ld
 
 
