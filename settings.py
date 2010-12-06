@@ -12,4 +12,4 @@
 copymode = None
 
 pattern_user = None
-pattern_default = "%n %a - %t %k"
+pattern_default = "%n %a - %t"
