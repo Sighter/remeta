@@ -29,14 +29,11 @@ class pattern:
 
 	def replace_tn(self, tn):
 		if self.pat.find("%n") != -1:
-			self.pat = self.pat.replace("%n", tn)
+			self.pat = self.pat.replace("%n", "{0:02d}".format(int(tn)))
 
 	def replace_key(self, key):
 		if self.pat.find("%k") != -1:
 			self.pat = self.pat.replace("%k", key)
-
-#
-#
 # end of pattern
 
 
