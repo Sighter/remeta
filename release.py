@@ -6,6 +6,7 @@
 # @Created:     2010-12-04.
 # @Revision:    0.1
 
+from math import ceil
 
 
 
@@ -21,7 +22,7 @@ class track:
 		self.link = "" 
 		self.tn = "" 
 	def __str__(self):
-		s = self.artist + " - " + self.title
+		s = self.artist + " - " + self.title + " - " + self.key
 		return s
 
 	# let the class act like a dict
@@ -106,6 +107,33 @@ class release:
 	def append (self, new_track):
 		self.tunes.append(new_track)
 	
+	# search track in release
+	def search_track(self, tr):
+		
+		# create match lists
+		set_artist_wanted = tr.artist.lower().split()
+		set_title_wanted = tr.title.lower().split()
+
+		print(set_artist_wanted, set_title_wanted)
+
+		artist_found = False
+		title_found = False
+
+		artist_min_hits = 0.0
+		title_min_hits = 0.0
+
+		for item in self.tunes:
+			set_artist_all = item.artist.lower().split()
+			set_title_all = item.title.lower().split()
+
+			artist_min_hits = ceil(len(set_artist_all) / 2)
+			title_min_hits = ceil(len(set_title_all) / 2)
+
+
+			print(set_artist_all)
+			print(set_title_all)
+			print(artist_min_hits)
+			print(title_min_hits)
 # end of release }}} #
 
 
@@ -124,20 +152,30 @@ def main ():
 	# create some tracks
 
 	track_1 = track()
-	track_1.artist = "Sighter"
-	track_1.title = "newthingno"
+	track_1.artist = "Black Sun Empire"
+	track_1.title = "Infusion"
 	
 	track_2 = track()
-	track_2.artist = "Kaim"
-	track_2.title = "Sunder"
+	track_2.artist = "Black Sun Power"
+	track_2.title = "Not infused"
+
+	track_3 = track()
+	track_3.artist = "Sighter & Aphector"
+	track_3.title = "Infusion"
 
 	rel = release()
 	rel.append (track_1)
 	rel.append (track_2)
+	rel.append (track_3)
 
 
-	for tr in rel:
-		print(tr)
+	search_track = track()
+	search_track.artist = "black empire"
+	search_track.title = "infusion"
+
+	rel.search_track(search_track)
+
+
 # end of main
 
 
