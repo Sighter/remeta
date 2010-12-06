@@ -8,6 +8,7 @@
 
 
 import re
+import urllib
 
 # function -- split_ld
 # @ string
@@ -42,3 +43,46 @@ def ePrint (verLevel, fName, message):
 	sFktname = "ePrint"
 	print(" --> {}: {}".format(fName, message))
 # end of ePrint
+
+
+
+
+# function -- subinstr () {{{
+# @ list of regex,sub -pairs
+# @ the string 
+# < new string
+# ****************************** #
+def subinstr(list,newstr):
+	for i in list:
+		p = re.compile(i[0])
+		newstr = p.sub(i[1], newstr)
+
+	return newstr
+# end of subinstr }}} #
+
+
+
+
+# function -- getWebAsSrc () {{{
+# @ url
+# < decoded string
+# ****************************** #
+# fkt -- getWebAsSrc(url) {{{
+def getWebAsStr(url):
+	try:
+		response = urllib.request.urlopen(url)
+	except:
+		print(" --> helpers.getWebAsStr: URL Error")
+		return ""
+
+	# print page info
+	#for i,j in response.info().items():
+	#		print(i,j)
+
+	# get page-source to str
+	string = response.read()
+	
+	# convert the string to a raw-string
+	return string.decode('Latin1')
+# end of }}} #
+
