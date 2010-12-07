@@ -16,6 +16,7 @@ from os import rename
 import shutil
 from id3ed import id3_to_track
 import pattern
+from search import search_clever
 
 
 
@@ -92,11 +93,49 @@ def main ():
 
 		suffix = split_ld(fn)
 
+		# we have flags in the pattern class to
+		# determine wich keys are used
+
+		res_t = None
+
+		# currently we only can operate if we have some information
 		if new_track.is_empty() == False: 
-			pat.replace_artist(new_track.artist)
-			pat.replace_title(new_track.title)
+			# if artist field is set
+			if pat.artist:
+				if new_track.artist == "":
+					res_t = search_clever(new_track)
+					if res_t:
+						new_track.artist = res_t.artist
+					else:
+						ePrint(1, sFktname, "Cant determine Artist Field for: {}".format(fn))
+						continue
+				pat.replace_artist(new_track.artist)
+
+			# if title field is set
+			if pat.title:
+				if new_track.title == "":
+					res_t = search_clever(new_track)
+					if res_t:
+						new_track.title = res_t.title
+					else:
+						ePrint(1, sFktname, "Cant determine title Field for: {}".format(fn))
+						continue
+				pat.replace_title(new_track.title)
+
+			# if key field is set
+			if pat.key:
+				if new_track.key == "":
+					res_t = search_clever(new_track)
+					print(res_t, res_t.key)
+					if res_t:
+						new_track.key = res_t.key
+					else:
+						ePrint(1, sFktname, "Cant determine key Field for: {}".format(fn))
+						continue
+				pat.replace_key(new_track.key)
+
 			pat.replace_tn(new_track.tn)
-			pat.replace_key(new_track.key)
+
 			final_name = "{}.{}".format(pat.get_result(), suffix)
 		else:
 			final_name = fn
