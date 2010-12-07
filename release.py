@@ -107,33 +107,62 @@ class release:
 	def append (self, new_track):
 		self.tunes.append(new_track)
 	
-	# search track in release
+	# function -- search_track
+	# @ a track
+	# < list of tracks
+	# search for a track in an release instance
+	# ***************************************** #
 	def search_track(self, tr):
 		
-		# create match lists
+		# create match lists - these lists contains all
+		# items from artist and title wich are separated
+		# by spaces
 		set_artist_wanted = tr.artist.lower().split()
 		set_title_wanted = tr.title.lower().split()
 
-		print(set_artist_wanted, set_title_wanted)
-
-		artist_found = False
-		title_found = False
-
-		artist_min_hits = 0.0
-		title_min_hits = 0.0
+		min_hits = 0.0
+	
+		match_list = []
+		match_list2	= []
 
 		for item in self.tunes:
-			set_artist_all = item.artist.lower().split()
-			set_title_all = item.title.lower().split()
 
-			artist_min_hits = ceil(len(set_artist_all) / 2)
-			title_min_hits = ceil(len(set_title_all) / 2)
+			# try to match the artist, at least the half of
+			# elements from the target set has to be matched
+			set_target = item.artist.lower().split()
+			min_hits = ceil(len(set_target) * 0.5)
 
+			match = False
+			matchc = 0
+			
+			for i in set_artist_wanted:
+				if i in set_target:
+					matchc += 1
+				if matchc >= min_hits:
+					match = True
+					match_list.append(item)
+					break
 
-			print(set_artist_all)
-			print(set_title_all)
-			print(artist_min_hits)
-			print(title_min_hits)
+		# try to match title
+		if len(match_list) > 1:
+			for item in match_list:
+				
+				set_target = item.title.lower().split()
+				min_hits = ceil(len(set_target) * 0.5)
+
+				match = False
+				matchc = 0
+
+				for i in set_title_wanted:
+					if i in set_target:
+						matchc += 1
+					if matchc >= min_hits:
+						match = True
+						match_list2.append(item)
+						break
+
+		return match_list2
+		# end of search_track		
 # end of release }}} #
 
 
@@ -156,8 +185,8 @@ def main ():
 	track_1.title = "Infusion"
 	
 	track_2 = track()
-	track_2.artist = "Black Sun Power"
-	track_2.title = "Not infused"
+	track_2.artist = "Black Sun Empire"
+	track_2.title = "Infusion lala vip"
 
 	track_3 = track()
 	track_3.artist = "Sighter & Aphector"
@@ -170,13 +199,13 @@ def main ():
 
 
 	search_track = track()
-	search_track.artist = "black empire"
+	search_track.artist = "black sun"
 	search_track.title = "infusion"
 
 	rel.search_track(search_track)
 
-
 # end of main
+
 
 
 
