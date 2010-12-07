@@ -13,3 +13,33 @@ copymode = None
 
 pattern_user = None
 pattern_default = "%n %a - %t"
+
+use_chemical_format = None
+
+quint_map = { 	'1A' : 'asmoll',
+				'2A' : 'dismoll',
+				'3A' : 'aismoll',
+				'4A' : 'fmoll',
+				'5A' : 'cmoll',
+				'6A' : 'gmoll',
+				'7A' : 'dmoll',
+				'8A' : 'amoll',
+				'9A' : 'emoll',
+				'10A' : 'hmoll',
+				'11A' : 'fismoll',
+				'12A' : 'cismoll',
+				'1B' : 'cesdur',
+				'2B' : 'fisdur',
+				'3B' : 'cisdur',
+				'4B' : 'asdur',
+				'5B' : 'esdur',
+				'6B' : 'bdur',
+				'7B' : 'fdur',
+				'8B' : 'cdur',
+				'9B' : 'gdur',
+				'10B' : 'ddur',
+				'11B' : 'adur',
+				'12B' : 'edur',
+				}
+
+
