@@ -28,11 +28,11 @@ def id3_to_track (filepath):
 
 	for item in output:
 		if item.startswith("artist: ") == True:
-			track_new["artist"] = item.lstrip("artist: ")
+			track_new["artist"] = item.lstrip("artist: ").strip()
 		elif item.startswith("songname: ") == True:
-			track_new["title"] = item.lstrip("songname: ")
+			track_new["title"] = item.lstrip("songname: ").strip()
 		elif item.startswith("tracknum: ") == True:
-			track_new["tn"] = item.lstrip("tracknum: ")
+			track_new["tn"] = item.lstrip("tracknum: ").strip()
 	
 	return track_new
 # end of id3_to_track
