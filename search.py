@@ -29,6 +29,7 @@ def search_clever (tr):
 	# build search-term
 	if tr.artist != "" and tr.title != "":
 		term = tr.artist + "+" + tr.title
+		term = term.replace("&","")
 		term = term.replace(" ","+")
 	
 	# first try to find the track in the release
