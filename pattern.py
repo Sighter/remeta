@@ -15,6 +15,21 @@
 class pattern:
 	def __init__(self,pat):
 		self.pat = pat
+
+		# flags to see what fields are used
+		self.artist = None
+		self.title = None
+		self.tn = None
+		self.key = None
+
+		if self.pat.find("%a") != -1:
+			self.artist = True
+		if self.pat.find("%t") != -1:
+			self.title = True
+		if self.pat.find("%n") != -1:
+			self.tn = True
+		if self.pat.find("%k") != -1:
+			self.key = True
 	
 	def get_result(self):
 		return self.pat
