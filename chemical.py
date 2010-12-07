@@ -278,9 +278,11 @@ class chemical:
 	# ***************************************************** #
 	def search(self, term):
 		# define link for search
-		searchUrl = self.baseUrl + r"/sc/search?&must=" + term + r"&Type=Music"
+		searchUrl = self.baseUrl + r"/sc/search?&must=" + term + r"&Type=Music&Type=&inandout=true&SRI=true&ND=-1"
+		
 
 		print(" --> searching on chemical for " + term)
+		print(" --> with " + searchUrl)
 		source = getWebAsStr(searchUrl)
 
 		# create a parser, we use minidom
