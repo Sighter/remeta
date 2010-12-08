@@ -12,6 +12,15 @@ pattern. First, remeta tries to fetch the information from tags.
 If some wanted information is not found, as it will be for the 
 harmonic keys, it tries to fetch the information from the web.
 
+To use the script simply clone the repository with
+	
+	git clone git://github.com/Sighter/remeta.git
+
+Then make a link to a folder which is present in your PATH
+variable.
+
+	ln -s path/to/git/repo/remeta.py path/to/your/bin/PATH/remeta
+
 
 
 ************
