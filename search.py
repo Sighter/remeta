@@ -48,7 +48,7 @@ def search_clever (tr):
 
 			# more than one item found
 			if len(res) > 1:
-				ePrint(1, sFktname, "Multible tracks found in release, make a choice")
+				ePrint(1, sFktname, "Multiple tracks found in release, make a choice")
 				k = 0
 				for t in res:
 					print("{0:3d}:\t{1}".format(k , t))
