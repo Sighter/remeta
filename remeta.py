@@ -14,7 +14,7 @@ from helpers import split_ld
 from os import path
 from os import rename
 import shutil
-from id3ed import id3_to_track
+from stagger_to_track import id3_to_track
 import pattern
 from search import search_clever
 
@@ -70,8 +70,6 @@ def main ():
 	if len(args) == 0:
 		ePrint(1, sFktname, "No Files specified")
 	
-	print(args)
-	
 	# check, whether files have valid paths
 	for fn in args:
 		if path.exists(fn) == False:
@@ -126,7 +124,6 @@ def main ():
 			if pat.key:
 				if new_track.key == "":
 					res_t = search_clever(new_track)
-					print(res_t, res_t.key)
 					if res_t:
 						# map key
 						if res_t.key in settings.quint_map:
