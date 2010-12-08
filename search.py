@@ -30,6 +30,9 @@ def search_clever (tr):
 	if tr.artist != "" and tr.title != "":
 		term = tr.artist + "+" + tr.title
 		term = term.replace("&","")
+		term = term.replace("(","")
+		term = term.replace(")","")
+
 		term = term.replace(" ","+")
 	
 	# first try to find the track in the release
@@ -68,6 +71,7 @@ def search_clever (tr):
 
 	# case if nothing was found
 	if len(results) == 0:
+		ePrint(1, sFktname, "nothing found on chemical")
 		return None
 
 	# case, if more then one was found
@@ -95,6 +99,7 @@ def search_clever (tr):
 
 	# nothing found
 	if res == None:
+		ePrint(1, sFktname, "Track not found in release page")
 		return None
 
 	# more than one item found
