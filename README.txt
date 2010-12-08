@@ -53,5 +53,6 @@ Examples:
 
  - if no tags are present, nothing can be found.
  - some tags do not work with id3ed
+ - only mp3 can be read for now
 
 
