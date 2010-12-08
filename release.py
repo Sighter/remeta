@@ -119,8 +119,14 @@ class release:
 		# create match lists - these lists contains all
 		# items from artist and title wich are separated
 		# by spaces
-		set_artist_wanted = tr.artist.lower().split()
-		set_title_wanted = tr.title.lower().split()
+		set_artist_wanted = tr.artist.lower()
+		set_title_wanted = tr.title.lower()
+
+		set_artist_wanted = set_artist_wanted.replace("(","").replace(")","")
+		set_title_wanted = set_title_wanted.replace("(","").replace(")","")
+
+		set_artist_wanted = set_artist_wanted.split()
+		set_title_wanted = set_title_wanted.split()
 
 		ePrint(2, sFktname, "looking for track: {} {}".format(set_artist_wanted, set_title_wanted))
 
@@ -146,7 +152,7 @@ class release:
 					match = True
 					match_list.append(item)
 					break
-
+		
 		# if we already have found the track
 		if len(match_list) == 1:
 			return match_list
@@ -171,7 +177,10 @@ class release:
 
 		ePrint(2, sFktname, match_list2)
 
-		return match_list2
+		if len(match_list2) == 0:
+			return None
+		else:
+			return match_list2
 		# end of search_track		
 # end of release }}} #
 
