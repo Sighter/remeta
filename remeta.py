@@ -128,7 +128,9 @@ def main ():
 					res_t = search_clever(new_track)
 					print(res_t, res_t.key)
 					if res_t:
-						new_track.key = res_t.key
+						# map key
+						if res_t.key in settings.quint_map:
+							new_track.key = settings.quint_map[res_t.key]
 					else:
 						ePrint(1, sFktname, "Cant determine key Field for: {}".format(fn))
 						continue
