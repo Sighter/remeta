@@ -1,0 +1,8 @@
+
+
+% todo.txt, 2010-12-08 -- todolist for the remeta project
+
+
+ - Use stagger for id3 tagging
+ - add modified time and todays date to pattern fields
+ - propper licensing 
