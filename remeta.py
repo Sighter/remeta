@@ -51,7 +51,7 @@ def main ():
 	
 	# handle arguments
 	try:
-		opts, args = getopt.getopt(sys.argv[1:], "hcp:", ["help", "copy", "pattern="])
+		opts, args = getopt.getopt(sys.argv[1:], "hcwp:", ["help", "copy", "use-chemical-format", "pattern="])
 	except:
 		print_help ()
 		sys.exit(2)
@@ -65,6 +65,8 @@ def main ():
 			settings.copymode = True
 		elif o in ("-p", "--pattern"):
 			settings.pattern_user = a
+		elif o in ("-w", "--use-chemical-format"):
+			settings.use_chemical_format = True
 				
 	# handle arguments
 	if len(args) == 0:
@@ -126,8 +128,10 @@ def main ():
 					res_t = search_clever(new_track)
 					if res_t:
 						# map key
-						if res_t.key in settings.quint_map:
+						if (res_t.key in settings.quint_map) and settings.use_chemical_format == None:
 							new_track.key = settings.quint_map[res_t.key]
+						else:
+							new_track.key = res_t.key
 					else:
 						ePrint(1, sFktname, "Cant determine key Field for: {}".format(fn))
 						continue
