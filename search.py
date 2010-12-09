@@ -118,6 +118,49 @@ def search_clever (tr):
 
 
 
+# function -- search_release
+# @ search term
+# < release instance or none
+# search a release on chemical records
+# **************************
+def search_release (term):
+	sFktname = "search_release"
+
+	term = term.replace(" ","+")
+
+	ePrint(1, sFktname, "search the web")
+
+	# search on chemical
+	query_chemical = chemical.chemical()
+	results = query_chemical.search(term)
+
+	# case if nothing was found
+	if len(results) == 0:
+		ePrint(1, sFktname, "nothing found on chemical")
+		return None
+
+	# case, if more then one was found
+	if len(results) > 1:
+		ePrint(1, sFktname, "Multiple Links found. Make a Choice\n")
+		k = 0
+		for i in results:
+			print("{0:3d}:\t{1}".format(k , results[k][1]))
+			k = k + 1
+		print("\n")
+		choice = int(input(" <-- "))
+		results = [ [ results[choice][0], results[choice][1] ] ]
+	
+	# create an release instance and feed it
+	rel = release()
+	rel.shortinfo = results[0][1]
+	rel.infopage = results[0][0]
+	rel = query_chemical.getReleaseInfo(rel)
+
+	return rel
+# end of search_release
+
+
+
 
 # function -- main
 # @ none
