@@ -43,4 +43,6 @@ quint_map = {
 	'12B' : 'edur',
 }
 
+search_term = None
+
 

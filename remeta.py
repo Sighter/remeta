@@ -17,6 +17,8 @@ import shutil
 from stagger_to_track import id3_to_track
 import pattern
 from search import search_clever
+from search import search_release
+import cache
 
 
 
@@ -31,6 +33,8 @@ def print_help ():
 	print("  -c	| --copy     make a copy of original files before copying")
 	print("  -h	| --help     print this help")
 	print("  -p	| --pattern  specify pattern for renaming\n")
+	print("  -w	|            use Cemelot format for keys\n")
+	print("  -s	| --search   search for release, to append this to the cache\n")
 	print("Keys for patterns:")
 	print("%a - Artist")
 	print("%t - Title")
@@ -51,7 +55,7 @@ def main ():
 	
 	# handle arguments
 	try:
-		opts, args = getopt.getopt(sys.argv[1:], "hcwp:", ["help", "copy", "use-chemical-format", "pattern="])
+		opts, args = getopt.getopt(sys.argv[1:], "hcws:p:", ["help", "copy", "use-chemical-format", "search=", "pattern="])
 	except:
 		print_help ()
 		sys.exit(2)
@@ -67,6 +71,8 @@ def main ():
 			settings.pattern_user = a
 		elif o in ("-w", "--use-chemical-format"):
 			settings.use_chemical_format = True
+		elif o in ("-s", "--search"):
+			settings.search_term = a
 				
 	# handle arguments
 	if len(args) == 0:
@@ -77,7 +83,13 @@ def main ():
 		if path.exists(fn) == False:
 			ePrint(1, sFktname, "Path not found: {}".format(fn))
 			sys.exit(2)
-	
+
+	# if search_term is given search for it first
+	# and if found append it to the cache
+	if settings.search_term:
+		rel = search_release(settings.search_term)
+		if rel:
+			cache.rels_found.append(rel)
 
 	# enter main loop
 	for fn in args:
