@@ -29,11 +29,11 @@ import cache
 # **************************
 def print_help ():
 	sFktname = "print_help"
-	print("Synopsis: remeta file1 file2 ... [ -c ] [ -p pattern ]")
+	print("Synopsis: remeta [ -c ] [ -p pattern ] [ -s term ] file1 file2 ...")
 	print("  -c	| --copy     make a copy of original files before copying")
 	print("  -h	| --help     print this help")
-	print("  -p	| --pattern  specify pattern for renaming\n")
-	print("  -w	|            use Cemelot format for keys\n")
+	print("  -p	| --pattern  specify pattern for renaming")
+	print("  -w	|            use Cemelot format for keys")
 	print("  -s	| --search   search for release, to append this to the cache\n")
 	print("Keys for patterns:")
 	print("%a - Artist")

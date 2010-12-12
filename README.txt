@@ -27,10 +27,12 @@ variable.
 * 2. Usage *
 ************
 
-Synopsis: remeta file1 file2 ... [ -c ] [ -p pattern ]
+Synopsis: remeta [ -c ] [ -p pattern ] [ -s term ] file1 file2 ...
   -c	| --copy     make a copy of original files before copying
   -h	| --help     print this help
   -p	| --pattern  specify pattern for renaming
+  -w	|            use Cemelot format for keys
+  -s	| --search   search for release, to append this to the cache
 
 Keys for patterns:
 %a - Artist
@@ -44,6 +46,15 @@ Examples:
 
 	This fetches artist, title and key for the given file, but makes
 	a copy of the original files.
+
+
+	remeta -c -p -s "secure search" "%a - %t - %k" *.mp3
+
+	This fetches artist, title and key for the given files (the current working dir), makes
+	a copy of the original files, and searches for "secure search" first. So if a release is
+	found, it is appended to the cache. After that all over files will be searched in this
+	release first. This is good if want to gather information about an album and the first
+	title matches this album with the search.
 
 
 
