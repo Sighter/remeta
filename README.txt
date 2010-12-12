@@ -54,7 +54,7 @@ Examples:
 	a copy of the original files, and searches for "secure search" first. So if a release is
 	found, it is appended to the cache. After that all over files will be searched in this
 	release first. This is good if want to gather information about an album and the first
-	title matches this album with the search.
+	title does not match this album with the search.
 
 
 
