@@ -17,9 +17,9 @@ pattern_default = "%n %a - %t"
 use_chemical_format = None
 
 quint_map = {
-	'1A' : 'asmoll',
+	'1A' : 'gismoll',
 	'2A' : 'dismoll',
-	'3A' : 'aismoll',
+	'3A' : 'bmoll',
 	'4A' : 'fmoll',
 	'5A' : 'cmoll',
 	'6A' : 'gmoll',
@@ -29,9 +29,9 @@ quint_map = {
 	'10A' : 'hmoll',
 	'11A' : 'fismoll',
 	'12A' : 'cismoll',
-	'1B' : 'cesdur',
+	'1B' : 'hdur',
 	'2B' : 'fisdur',
-	'3B' : 'cisdur',
+	'3B' : 'desdur',
 	'4B' : 'asdur',
 	'5B' : 'esdur',
 	'6B' : 'bdur',
