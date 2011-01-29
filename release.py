@@ -8,6 +8,7 @@
 
 from math import ceil
 from helpers import ePrint
+from settings import quint_map
 from operator import itemgetter
 
 
@@ -24,7 +25,7 @@ class track:
 		self.link = "" 
 		self.tn = "" 
 	def __str__(self):
-		s = self.artist + " - " + self.title + " - " + self.key
+		s = self.artist + " - " + self.title + " - " + self.key + " - " + quint_map[self.key]
 		return s
 
 	# let the class act like a dict
