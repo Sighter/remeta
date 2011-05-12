@@ -8,6 +8,7 @@
 from release import release
 from helpers import getWebAsStr
 from release import track
+from release import ePrint
 from helpers import subinstr
 from html.parser import HTMLParser
 import urllib.request
@@ -39,14 +40,22 @@ class chemical:
 	# ****************************** #
 	def fetch_HitLinks(self, stream):
 		l_itemFound = False;
+		l_prodSectionFound = False;
 		l_linkList = []
 
 		for item in stream:
-			# check for item found
+			# check for product section
 			if ("name" in item) and (item["name"] == "div"):
 				for attTupel in item["data"]:
-					if ("class" in attTupel) and ("item" in attTupel):
-						l_itemFound = True
+					if ("class" in attTupel) and ("ProductListings" in attTupel):
+						l_prodSectionFound = True
+
+			# check for item found
+			if (l_prodSectionFound == True):
+				if ("name" in item) and (item["name"] == "div"):
+					for attTupel in item["data"]:
+						if ("class" in attTupel) and ("item" in attTupel):
+							l_itemFound = True
 
 			# grab link
 			if l_itemFound == True:
@@ -297,7 +306,6 @@ class chemical:
 
 		# find short info
 		l_shortInfo = self.fetch_ShortInfo(stream)
-		
 
 		# create an two dimensional list
 		results = []
@@ -315,8 +323,12 @@ class chemical:
 	# < a feeded release instance
 	# ****************************** #
 	def getReleaseInfo(self, rel):
+		sFktname = "getReleaseInfo"
 		
 		source = getWebAsStr(rel.infopage)
+
+		
+		
 
 		# create a parser, we use minidom
 		p = html5lib.HTMLParser(tree=treebuilders.getTreeBuilder("dom"))

@@ -25,7 +25,9 @@ class track:
 		self.link = "" 
 		self.tn = "" 
 	def __str__(self):
-		s = self.artist + " - " + self.title + " - " + self.key + " - " + quint_map[self.key]
+		s = self.artist + " - " + self.title + " - " + self.key + " - "
+		if self.key != "":
+			s += quint_map[self.key]
 		return s
 
 	# let the class act like a dict
@@ -151,8 +153,9 @@ class release:
 			# create a matchcount, item tupel
 			match_list.append((item_hits, item))
 
-		if match_list == 0:
+		if len(match_list) == 0:
 			return None
+
 
 		# sort matchlist
 		match_list = sorted(match_list, key = lambda tup: tup[0], reverse = True)
